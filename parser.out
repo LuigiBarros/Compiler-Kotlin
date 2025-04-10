@@ -1,0 +1,3111 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DOUBLEQUOTES
+    EQUAL
+    FALSE
+    FLOAT
+    NULL
+    POW
+    TRUE
+
+Grammar
+
+Rule 0     S' -> KotlinFile
+Rule 1     KotlinFile -> ShebangLine packageHeader importList topLevelObject
+Rule 2     ShebangLine -> HASH NOT ID
+Rule 3     packageHeader -> PACKAGE ID
+Rule 4     importList -> importList importHeader
+Rule 5     importList -> importHeader
+Rule 6     importHeader -> IMPORT ID
+Rule 7     topLevelObject -> topLevelObject functionDeclaration
+Rule 8     topLevelObject -> functionDeclaration
+Rule 9     functionDeclaration -> FUN ID LPAREN params RPAREN block
+Rule 10    functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block
+Rule 11    functionDeclaration -> FUN ID LPAREN RPAREN COLON type block
+Rule 12    functionDeclaration -> FUN ID LPAREN RPAREN block
+Rule 13    params -> ID COLON type
+Rule 14    params -> ID COLON type COMMA params
+Rule 15    type -> TYPE_INT
+Rule 16    type -> TYPE_STRING
+Rule 17    type -> TYPE_BOOLEAN
+Rule 18    type -> TYPE_FLOAT
+Rule 19    block -> LBRACE RBRACE
+Rule 20    block -> LBRACE statements RBRACE
+Rule 21    statements -> statements statement
+Rule 22    statements -> statement
+Rule 23    statement -> expression
+Rule 24    statement -> variableDeclaration
+Rule 25    statement -> variableAssignment
+Rule 26    statement -> IF LPAREN expression RPAREN block elseStatement
+Rule 27    statement -> IF LPAREN expression RPAREN block
+Rule 28    elseStatement -> ELSE block
+Rule 29    statement -> forLoop
+Rule 30    statement -> whileLoop
+Rule 31    statement -> returnStatement
+Rule 32    expression -> disjunction
+Rule 33    disjunction -> disjunction OR conjunction
+Rule 34    disjunction -> conjunction
+Rule 35    conjunction -> conjunction AND equality
+Rule 36    conjunction -> equality
+Rule 37    equality -> equality operadoresEquality comparation
+Rule 38    equality -> comparation
+Rule 39    operadoresEquality -> DIFFERENT
+Rule 40    comparation -> comparation operadoresComparation inExpression
+Rule 41    comparation -> inExpression
+Rule 42    operadoresComparation -> LESS
+Rule 43    operadoresComparation -> GREATER
+Rule 44    operadoresComparation -> LESSEQ
+Rule 45    operadoresComparation -> GREATEREQ
+Rule 46    inExpression -> inExpression IN additive
+Rule 47    inExpression -> additive
+Rule 48    additive -> additive aditivos multiplicative
+Rule 49    additive -> multiplicative
+Rule 50    aditivos -> PLUS
+Rule 51    aditivos -> MINUS
+Rule 52    multiplicative -> multiplicative multiplicadores resto
+Rule 53    multiplicative -> resto
+Rule 54    multiplicadores -> TIMES
+Rule 55    multiplicadores -> DIVIDE
+Rule 56    resto -> ID
+Rule 57    resto -> STRING
+Rule 58    resto -> NUMBER
+Rule 59    resto -> BOOLEAN
+Rule 60    resto -> functionDeclaration
+Rule 61    resto -> functionCall
+Rule 62    variableDeclaration -> VAR ID COLON type ASSIGN expression
+Rule 63    variableDeclaration -> VAR ID COLON type
+Rule 64    variableAssignment -> ID ASSIGN expression
+Rule 65    variableAssignment -> ID PLUSEQ expression
+Rule 66    variableAssignment -> ID MINUSEQ expression
+Rule 67    variableAssignment -> ID TIMESEQ expression
+Rule 68    variableAssignment -> ID DIVIDEEQ expression
+Rule 69    forLoop -> FOR LPAREN expression RPAREN block
+Rule 70    whileLoop -> WHILE LPAREN expression RPAREN block
+Rule 71    returnStatement -> RETURN expression
+Rule 72    functionCall -> ID LPAREN listaParametros RPAREN
+Rule 73    functionCall -> ID LPAREN RPAREN
+Rule 74    listaParametros -> expression COMMA listaParametros
+Rule 75    listaParametros -> expression
+
+Terminals, with rules where they appear
+
+AND                  : 35
+ASSIGN               : 62 64
+BOOLEAN              : 59
+COLON                : 10 11 13 14 62 63
+COMMA                : 14 74
+DIFFERENT            : 39
+DIVIDE               : 55
+DIVIDEEQ             : 68
+DOUBLEQUOTES         : 
+ELSE                 : 28
+EQUAL                : 
+FALSE                : 
+FLOAT                : 
+FOR                  : 69
+FUN                  : 9 10 11 12
+GREATER              : 43
+GREATEREQ            : 45
+HASH                 : 2
+ID                   : 2 3 6 9 10 11 12 13 14 56 62 63 64 65 66 67 68 72 73
+IF                   : 26 27
+IMPORT               : 6
+IN                   : 46
+LBRACE               : 19 20
+LESS                 : 42
+LESSEQ               : 44
+LPAREN               : 9 10 11 12 26 27 69 70 72 73
+MINUS                : 51
+MINUSEQ              : 66
+NOT                  : 2
+NULL                 : 
+NUMBER               : 58
+OR                   : 33
+PACKAGE              : 3
+PLUS                 : 50
+PLUSEQ               : 65
+POW                  : 
+RBRACE               : 19 20
+RETURN               : 71
+RPAREN               : 9 10 11 12 26 27 69 70 72 73
+STRING               : 57
+TIMES                : 54
+TIMESEQ              : 67
+TRUE                 : 
+TYPE_BOOLEAN         : 17
+TYPE_FLOAT           : 18
+TYPE_INT             : 15
+TYPE_STRING          : 16
+VAR                  : 62 63
+WHILE                : 70
+error                : 
+
+Nonterminals, with rules where they appear
+
+KotlinFile           : 0
+ShebangLine          : 1
+additive             : 46 47 48
+aditivos             : 48
+block                : 9 10 11 12 26 27 28 69 70
+comparation          : 37 38 40
+conjunction          : 33 34 35
+disjunction          : 32 33
+elseStatement        : 26
+equality             : 35 36 37
+expression           : 23 26 27 62 64 65 66 67 68 69 70 71 74 75
+forLoop              : 29
+functionCall         : 61
+functionDeclaration  : 7 8 60
+importHeader         : 4 5
+importList           : 1 4
+inExpression         : 40 41 46
+listaParametros      : 72 74
+multiplicadores      : 52
+multiplicative       : 48 49 52
+operadoresComparation : 40
+operadoresEquality   : 37
+packageHeader        : 1
+params               : 9 10 14
+resto                : 52 53
+returnStatement      : 31
+statement            : 21 22
+statements           : 20 21
+topLevelObject       : 1 7
+type                 : 10 11 13 14 62 63
+variableAssignment   : 25
+variableDeclaration  : 24
+whileLoop            : 30
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . KotlinFile
+    (1) KotlinFile -> . ShebangLine packageHeader importList topLevelObject
+    (2) ShebangLine -> . HASH NOT ID
+
+    HASH            shift and go to state 3
+
+    KotlinFile                     shift and go to state 1
+    ShebangLine                    shift and go to state 2
+
+state 1
+
+    (0) S' -> KotlinFile .
+
+
+
+state 2
+
+    (1) KotlinFile -> ShebangLine . packageHeader importList topLevelObject
+    (3) packageHeader -> . PACKAGE ID
+
+    PACKAGE         shift and go to state 5
+
+    packageHeader                  shift and go to state 4
+
+state 3
+
+    (2) ShebangLine -> HASH . NOT ID
+
+    NOT             shift and go to state 6
+
+
+state 4
+
+    (1) KotlinFile -> ShebangLine packageHeader . importList topLevelObject
+    (4) importList -> . importList importHeader
+    (5) importList -> . importHeader
+    (6) importHeader -> . IMPORT ID
+
+    IMPORT          shift and go to state 9
+
+    importList                     shift and go to state 7
+    importHeader                   shift and go to state 8
+
+state 5
+
+    (3) packageHeader -> PACKAGE . ID
+
+    ID              shift and go to state 10
+
+
+state 6
+
+    (2) ShebangLine -> HASH NOT . ID
+
+    ID              shift and go to state 11
+
+
+state 7
+
+    (1) KotlinFile -> ShebangLine packageHeader importList . topLevelObject
+    (4) importList -> importList . importHeader
+    (7) topLevelObject -> . topLevelObject functionDeclaration
+    (8) topLevelObject -> . functionDeclaration
+    (6) importHeader -> . IMPORT ID
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+
+    IMPORT          shift and go to state 9
+    FUN             shift and go to state 15
+
+    topLevelObject                 shift and go to state 12
+    importHeader                   shift and go to state 13
+    functionDeclaration            shift and go to state 14
+
+state 8
+
+    (5) importList -> importHeader .
+
+    IMPORT          reduce using rule 5 (importList -> importHeader .)
+    FUN             reduce using rule 5 (importList -> importHeader .)
+
+
+state 9
+
+    (6) importHeader -> IMPORT . ID
+
+    ID              shift and go to state 16
+
+
+state 10
+
+    (3) packageHeader -> PACKAGE ID .
+
+    IMPORT          reduce using rule 3 (packageHeader -> PACKAGE ID .)
+
+
+state 11
+
+    (2) ShebangLine -> HASH NOT ID .
+
+    PACKAGE         reduce using rule 2 (ShebangLine -> HASH NOT ID .)
+
+
+state 12
+
+    (1) KotlinFile -> ShebangLine packageHeader importList topLevelObject .
+    (7) topLevelObject -> topLevelObject . functionDeclaration
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+
+    $end            reduce using rule 1 (KotlinFile -> ShebangLine packageHeader importList topLevelObject .)
+    FUN             shift and go to state 15
+
+    functionDeclaration            shift and go to state 17
+
+state 13
+
+    (4) importList -> importList importHeader .
+
+    IMPORT          reduce using rule 4 (importList -> importList importHeader .)
+    FUN             reduce using rule 4 (importList -> importList importHeader .)
+
+
+state 14
+
+    (8) topLevelObject -> functionDeclaration .
+
+    FUN             reduce using rule 8 (topLevelObject -> functionDeclaration .)
+    $end            reduce using rule 8 (topLevelObject -> functionDeclaration .)
+
+
+state 15
+
+    (9) functionDeclaration -> FUN . ID LPAREN params RPAREN block
+    (10) functionDeclaration -> FUN . ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> FUN . ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> FUN . ID LPAREN RPAREN block
+
+    ID              shift and go to state 18
+
+
+state 16
+
+    (6) importHeader -> IMPORT ID .
+
+    IMPORT          reduce using rule 6 (importHeader -> IMPORT ID .)
+    FUN             reduce using rule 6 (importHeader -> IMPORT ID .)
+
+
+state 17
+
+    (7) topLevelObject -> topLevelObject functionDeclaration .
+
+    FUN             reduce using rule 7 (topLevelObject -> topLevelObject functionDeclaration .)
+    $end            reduce using rule 7 (topLevelObject -> topLevelObject functionDeclaration .)
+
+
+state 18
+
+    (9) functionDeclaration -> FUN ID . LPAREN params RPAREN block
+    (10) functionDeclaration -> FUN ID . LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> FUN ID . LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> FUN ID . LPAREN RPAREN block
+
+    LPAREN          shift and go to state 19
+
+
+state 19
+
+    (9) functionDeclaration -> FUN ID LPAREN . params RPAREN block
+    (10) functionDeclaration -> FUN ID LPAREN . params RPAREN COLON type block
+    (11) functionDeclaration -> FUN ID LPAREN . RPAREN COLON type block
+    (12) functionDeclaration -> FUN ID LPAREN . RPAREN block
+    (13) params -> . ID COLON type
+    (14) params -> . ID COLON type COMMA params
+
+    RPAREN          shift and go to state 22
+    ID              shift and go to state 20
+
+    params                         shift and go to state 21
+
+state 20
+
+    (13) params -> ID . COLON type
+    (14) params -> ID . COLON type COMMA params
+
+    COLON           shift and go to state 23
+
+
+state 21
+
+    (9) functionDeclaration -> FUN ID LPAREN params . RPAREN block
+    (10) functionDeclaration -> FUN ID LPAREN params . RPAREN COLON type block
+
+    RPAREN          shift and go to state 24
+
+
+state 22
+
+    (11) functionDeclaration -> FUN ID LPAREN RPAREN . COLON type block
+    (12) functionDeclaration -> FUN ID LPAREN RPAREN . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    COLON           shift and go to state 25
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 26
+
+state 23
+
+    (13) params -> ID COLON . type
+    (14) params -> ID COLON . type COMMA params
+    (15) type -> . TYPE_INT
+    (16) type -> . TYPE_STRING
+    (17) type -> . TYPE_BOOLEAN
+    (18) type -> . TYPE_FLOAT
+
+    TYPE_INT        shift and go to state 29
+    TYPE_STRING     shift and go to state 30
+    TYPE_BOOLEAN    shift and go to state 31
+    TYPE_FLOAT      shift and go to state 32
+
+    type                           shift and go to state 28
+
+state 24
+
+    (9) functionDeclaration -> FUN ID LPAREN params RPAREN . block
+    (10) functionDeclaration -> FUN ID LPAREN params RPAREN . COLON type block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    COLON           shift and go to state 34
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 33
+
+state 25
+
+    (11) functionDeclaration -> FUN ID LPAREN RPAREN COLON . type block
+    (15) type -> . TYPE_INT
+    (16) type -> . TYPE_STRING
+    (17) type -> . TYPE_BOOLEAN
+    (18) type -> . TYPE_FLOAT
+
+    TYPE_INT        shift and go to state 29
+    TYPE_STRING     shift and go to state 30
+    TYPE_BOOLEAN    shift and go to state 31
+    TYPE_FLOAT      shift and go to state 32
+
+    type                           shift and go to state 35
+
+state 26
+
+    (12) functionDeclaration -> FUN ID LPAREN RPAREN block .
+
+    FUN             reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    $end            reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    TIMES           reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    DIVIDE          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    PLUS            reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    MINUS           reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    IN              reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    LESS            reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    GREATER         reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    LESSEQ          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    GREATEREQ       reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    DIFFERENT       reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    AND             reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    OR              reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    RBRACE          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    IF              reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    VAR             reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    ID              reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    FOR             reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    WHILE           reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    RETURN          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    STRING          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    NUMBER          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    BOOLEAN         reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    RPAREN          reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+    COMMA           reduce using rule 12 (functionDeclaration -> FUN ID LPAREN RPAREN block .)
+
+
+state 27
+
+    (19) block -> LBRACE . RBRACE
+    (20) block -> LBRACE . statements RBRACE
+    (21) statements -> . statements statement
+    (22) statements -> . statement
+    (23) statement -> . expression
+    (24) statement -> . variableDeclaration
+    (25) statement -> . variableAssignment
+    (26) statement -> . IF LPAREN expression RPAREN block elseStatement
+    (27) statement -> . IF LPAREN expression RPAREN block
+    (29) statement -> . forLoop
+    (30) statement -> . whileLoop
+    (31) statement -> . returnStatement
+    (32) expression -> . disjunction
+    (62) variableDeclaration -> . VAR ID COLON type ASSIGN expression
+    (63) variableDeclaration -> . VAR ID COLON type
+    (64) variableAssignment -> . ID ASSIGN expression
+    (65) variableAssignment -> . ID PLUSEQ expression
+    (66) variableAssignment -> . ID MINUSEQ expression
+    (67) variableAssignment -> . ID TIMESEQ expression
+    (68) variableAssignment -> . ID DIVIDEEQ expression
+    (69) forLoop -> . FOR LPAREN expression RPAREN block
+    (70) whileLoop -> . WHILE LPAREN expression RPAREN block
+    (71) returnStatement -> . RETURN expression
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    RBRACE          shift and go to state 36
+    IF              shift and go to state 42
+    VAR             shift and go to state 47
+    ID              shift and go to state 48
+    FOR             shift and go to state 49
+    WHILE           shift and go to state 50
+    RETURN          shift and go to state 51
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    statements                     shift and go to state 37
+    statement                      shift and go to state 38
+    expression                     shift and go to state 39
+    variableDeclaration            shift and go to state 40
+    variableAssignment             shift and go to state 41
+    forLoop                        shift and go to state 43
+    whileLoop                      shift and go to state 44
+    returnStatement                shift and go to state 45
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 28
+
+    (13) params -> ID COLON type .
+    (14) params -> ID COLON type . COMMA params
+
+    RPAREN          reduce using rule 13 (params -> ID COLON type .)
+    COMMA           shift and go to state 64
+
+
+state 29
+
+    (15) type -> TYPE_INT .
+
+    COMMA           reduce using rule 15 (type -> TYPE_INT .)
+    RPAREN          reduce using rule 15 (type -> TYPE_INT .)
+    LBRACE          reduce using rule 15 (type -> TYPE_INT .)
+    ASSIGN          reduce using rule 15 (type -> TYPE_INT .)
+    RBRACE          reduce using rule 15 (type -> TYPE_INT .)
+    IF              reduce using rule 15 (type -> TYPE_INT .)
+    VAR             reduce using rule 15 (type -> TYPE_INT .)
+    ID              reduce using rule 15 (type -> TYPE_INT .)
+    FOR             reduce using rule 15 (type -> TYPE_INT .)
+    WHILE           reduce using rule 15 (type -> TYPE_INT .)
+    RETURN          reduce using rule 15 (type -> TYPE_INT .)
+    STRING          reduce using rule 15 (type -> TYPE_INT .)
+    NUMBER          reduce using rule 15 (type -> TYPE_INT .)
+    BOOLEAN         reduce using rule 15 (type -> TYPE_INT .)
+    FUN             reduce using rule 15 (type -> TYPE_INT .)
+
+
+state 30
+
+    (16) type -> TYPE_STRING .
+
+    COMMA           reduce using rule 16 (type -> TYPE_STRING .)
+    RPAREN          reduce using rule 16 (type -> TYPE_STRING .)
+    LBRACE          reduce using rule 16 (type -> TYPE_STRING .)
+    ASSIGN          reduce using rule 16 (type -> TYPE_STRING .)
+    RBRACE          reduce using rule 16 (type -> TYPE_STRING .)
+    IF              reduce using rule 16 (type -> TYPE_STRING .)
+    VAR             reduce using rule 16 (type -> TYPE_STRING .)
+    ID              reduce using rule 16 (type -> TYPE_STRING .)
+    FOR             reduce using rule 16 (type -> TYPE_STRING .)
+    WHILE           reduce using rule 16 (type -> TYPE_STRING .)
+    RETURN          reduce using rule 16 (type -> TYPE_STRING .)
+    STRING          reduce using rule 16 (type -> TYPE_STRING .)
+    NUMBER          reduce using rule 16 (type -> TYPE_STRING .)
+    BOOLEAN         reduce using rule 16 (type -> TYPE_STRING .)
+    FUN             reduce using rule 16 (type -> TYPE_STRING .)
+
+
+state 31
+
+    (17) type -> TYPE_BOOLEAN .
+
+    COMMA           reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    RPAREN          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    LBRACE          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    ASSIGN          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    RBRACE          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    IF              reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    VAR             reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    ID              reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    FOR             reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    WHILE           reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    RETURN          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    STRING          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    NUMBER          reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    BOOLEAN         reduce using rule 17 (type -> TYPE_BOOLEAN .)
+    FUN             reduce using rule 17 (type -> TYPE_BOOLEAN .)
+
+
+state 32
+
+    (18) type -> TYPE_FLOAT .
+
+    COMMA           reduce using rule 18 (type -> TYPE_FLOAT .)
+    RPAREN          reduce using rule 18 (type -> TYPE_FLOAT .)
+    LBRACE          reduce using rule 18 (type -> TYPE_FLOAT .)
+    ASSIGN          reduce using rule 18 (type -> TYPE_FLOAT .)
+    RBRACE          reduce using rule 18 (type -> TYPE_FLOAT .)
+    IF              reduce using rule 18 (type -> TYPE_FLOAT .)
+    VAR             reduce using rule 18 (type -> TYPE_FLOAT .)
+    ID              reduce using rule 18 (type -> TYPE_FLOAT .)
+    FOR             reduce using rule 18 (type -> TYPE_FLOAT .)
+    WHILE           reduce using rule 18 (type -> TYPE_FLOAT .)
+    RETURN          reduce using rule 18 (type -> TYPE_FLOAT .)
+    STRING          reduce using rule 18 (type -> TYPE_FLOAT .)
+    NUMBER          reduce using rule 18 (type -> TYPE_FLOAT .)
+    BOOLEAN         reduce using rule 18 (type -> TYPE_FLOAT .)
+    FUN             reduce using rule 18 (type -> TYPE_FLOAT .)
+
+
+state 33
+
+    (9) functionDeclaration -> FUN ID LPAREN params RPAREN block .
+
+    FUN             reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    $end            reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    TIMES           reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    DIVIDE          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    PLUS            reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    MINUS           reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    IN              reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    LESS            reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    GREATER         reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    LESSEQ          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    GREATEREQ       reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    DIFFERENT       reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    AND             reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    OR              reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    RBRACE          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    IF              reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    VAR             reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    ID              reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    FOR             reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    WHILE           reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    RETURN          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    STRING          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    NUMBER          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    BOOLEAN         reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    RPAREN          reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+    COMMA           reduce using rule 9 (functionDeclaration -> FUN ID LPAREN params RPAREN block .)
+
+
+state 34
+
+    (10) functionDeclaration -> FUN ID LPAREN params RPAREN COLON . type block
+    (15) type -> . TYPE_INT
+    (16) type -> . TYPE_STRING
+    (17) type -> . TYPE_BOOLEAN
+    (18) type -> . TYPE_FLOAT
+
+    TYPE_INT        shift and go to state 29
+    TYPE_STRING     shift and go to state 30
+    TYPE_BOOLEAN    shift and go to state 31
+    TYPE_FLOAT      shift and go to state 32
+
+    type                           shift and go to state 65
+
+state 35
+
+    (11) functionDeclaration -> FUN ID LPAREN RPAREN COLON type . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 66
+
+state 36
+
+    (19) block -> LBRACE RBRACE .
+
+    FUN             reduce using rule 19 (block -> LBRACE RBRACE .)
+    $end            reduce using rule 19 (block -> LBRACE RBRACE .)
+    TIMES           reduce using rule 19 (block -> LBRACE RBRACE .)
+    DIVIDE          reduce using rule 19 (block -> LBRACE RBRACE .)
+    PLUS            reduce using rule 19 (block -> LBRACE RBRACE .)
+    MINUS           reduce using rule 19 (block -> LBRACE RBRACE .)
+    IN              reduce using rule 19 (block -> LBRACE RBRACE .)
+    LESS            reduce using rule 19 (block -> LBRACE RBRACE .)
+    GREATER         reduce using rule 19 (block -> LBRACE RBRACE .)
+    LESSEQ          reduce using rule 19 (block -> LBRACE RBRACE .)
+    GREATEREQ       reduce using rule 19 (block -> LBRACE RBRACE .)
+    DIFFERENT       reduce using rule 19 (block -> LBRACE RBRACE .)
+    AND             reduce using rule 19 (block -> LBRACE RBRACE .)
+    OR              reduce using rule 19 (block -> LBRACE RBRACE .)
+    RBRACE          reduce using rule 19 (block -> LBRACE RBRACE .)
+    IF              reduce using rule 19 (block -> LBRACE RBRACE .)
+    VAR             reduce using rule 19 (block -> LBRACE RBRACE .)
+    ID              reduce using rule 19 (block -> LBRACE RBRACE .)
+    FOR             reduce using rule 19 (block -> LBRACE RBRACE .)
+    WHILE           reduce using rule 19 (block -> LBRACE RBRACE .)
+    RETURN          reduce using rule 19 (block -> LBRACE RBRACE .)
+    STRING          reduce using rule 19 (block -> LBRACE RBRACE .)
+    NUMBER          reduce using rule 19 (block -> LBRACE RBRACE .)
+    BOOLEAN         reduce using rule 19 (block -> LBRACE RBRACE .)
+    RPAREN          reduce using rule 19 (block -> LBRACE RBRACE .)
+    COMMA           reduce using rule 19 (block -> LBRACE RBRACE .)
+    ELSE            reduce using rule 19 (block -> LBRACE RBRACE .)
+
+
+state 37
+
+    (20) block -> LBRACE statements . RBRACE
+    (21) statements -> statements . statement
+    (23) statement -> . expression
+    (24) statement -> . variableDeclaration
+    (25) statement -> . variableAssignment
+    (26) statement -> . IF LPAREN expression RPAREN block elseStatement
+    (27) statement -> . IF LPAREN expression RPAREN block
+    (29) statement -> . forLoop
+    (30) statement -> . whileLoop
+    (31) statement -> . returnStatement
+    (32) expression -> . disjunction
+    (62) variableDeclaration -> . VAR ID COLON type ASSIGN expression
+    (63) variableDeclaration -> . VAR ID COLON type
+    (64) variableAssignment -> . ID ASSIGN expression
+    (65) variableAssignment -> . ID PLUSEQ expression
+    (66) variableAssignment -> . ID MINUSEQ expression
+    (67) variableAssignment -> . ID TIMESEQ expression
+    (68) variableAssignment -> . ID DIVIDEEQ expression
+    (69) forLoop -> . FOR LPAREN expression RPAREN block
+    (70) whileLoop -> . WHILE LPAREN expression RPAREN block
+    (71) returnStatement -> . RETURN expression
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    RBRACE          shift and go to state 67
+    IF              shift and go to state 42
+    VAR             shift and go to state 47
+    ID              shift and go to state 48
+    FOR             shift and go to state 49
+    WHILE           shift and go to state 50
+    RETURN          shift and go to state 51
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    statement                      shift and go to state 68
+    expression                     shift and go to state 39
+    variableDeclaration            shift and go to state 40
+    variableAssignment             shift and go to state 41
+    forLoop                        shift and go to state 43
+    whileLoop                      shift and go to state 44
+    returnStatement                shift and go to state 45
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 38
+
+    (22) statements -> statement .
+
+    RBRACE          reduce using rule 22 (statements -> statement .)
+    IF              reduce using rule 22 (statements -> statement .)
+    VAR             reduce using rule 22 (statements -> statement .)
+    ID              reduce using rule 22 (statements -> statement .)
+    FOR             reduce using rule 22 (statements -> statement .)
+    WHILE           reduce using rule 22 (statements -> statement .)
+    RETURN          reduce using rule 22 (statements -> statement .)
+    STRING          reduce using rule 22 (statements -> statement .)
+    NUMBER          reduce using rule 22 (statements -> statement .)
+    BOOLEAN         reduce using rule 22 (statements -> statement .)
+    FUN             reduce using rule 22 (statements -> statement .)
+
+
+state 39
+
+    (23) statement -> expression .
+
+    RBRACE          reduce using rule 23 (statement -> expression .)
+    IF              reduce using rule 23 (statement -> expression .)
+    VAR             reduce using rule 23 (statement -> expression .)
+    ID              reduce using rule 23 (statement -> expression .)
+    FOR             reduce using rule 23 (statement -> expression .)
+    WHILE           reduce using rule 23 (statement -> expression .)
+    RETURN          reduce using rule 23 (statement -> expression .)
+    STRING          reduce using rule 23 (statement -> expression .)
+    NUMBER          reduce using rule 23 (statement -> expression .)
+    BOOLEAN         reduce using rule 23 (statement -> expression .)
+    FUN             reduce using rule 23 (statement -> expression .)
+
+
+state 40
+
+    (24) statement -> variableDeclaration .
+
+    RBRACE          reduce using rule 24 (statement -> variableDeclaration .)
+    IF              reduce using rule 24 (statement -> variableDeclaration .)
+    VAR             reduce using rule 24 (statement -> variableDeclaration .)
+    ID              reduce using rule 24 (statement -> variableDeclaration .)
+    FOR             reduce using rule 24 (statement -> variableDeclaration .)
+    WHILE           reduce using rule 24 (statement -> variableDeclaration .)
+    RETURN          reduce using rule 24 (statement -> variableDeclaration .)
+    STRING          reduce using rule 24 (statement -> variableDeclaration .)
+    NUMBER          reduce using rule 24 (statement -> variableDeclaration .)
+    BOOLEAN         reduce using rule 24 (statement -> variableDeclaration .)
+    FUN             reduce using rule 24 (statement -> variableDeclaration .)
+
+
+state 41
+
+    (25) statement -> variableAssignment .
+
+    RBRACE          reduce using rule 25 (statement -> variableAssignment .)
+    IF              reduce using rule 25 (statement -> variableAssignment .)
+    VAR             reduce using rule 25 (statement -> variableAssignment .)
+    ID              reduce using rule 25 (statement -> variableAssignment .)
+    FOR             reduce using rule 25 (statement -> variableAssignment .)
+    WHILE           reduce using rule 25 (statement -> variableAssignment .)
+    RETURN          reduce using rule 25 (statement -> variableAssignment .)
+    STRING          reduce using rule 25 (statement -> variableAssignment .)
+    NUMBER          reduce using rule 25 (statement -> variableAssignment .)
+    BOOLEAN         reduce using rule 25 (statement -> variableAssignment .)
+    FUN             reduce using rule 25 (statement -> variableAssignment .)
+
+
+state 42
+
+    (26) statement -> IF . LPAREN expression RPAREN block elseStatement
+    (27) statement -> IF . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 69
+
+
+state 43
+
+    (29) statement -> forLoop .
+
+    RBRACE          reduce using rule 29 (statement -> forLoop .)
+    IF              reduce using rule 29 (statement -> forLoop .)
+    VAR             reduce using rule 29 (statement -> forLoop .)
+    ID              reduce using rule 29 (statement -> forLoop .)
+    FOR             reduce using rule 29 (statement -> forLoop .)
+    WHILE           reduce using rule 29 (statement -> forLoop .)
+    RETURN          reduce using rule 29 (statement -> forLoop .)
+    STRING          reduce using rule 29 (statement -> forLoop .)
+    NUMBER          reduce using rule 29 (statement -> forLoop .)
+    BOOLEAN         reduce using rule 29 (statement -> forLoop .)
+    FUN             reduce using rule 29 (statement -> forLoop .)
+
+
+state 44
+
+    (30) statement -> whileLoop .
+
+    RBRACE          reduce using rule 30 (statement -> whileLoop .)
+    IF              reduce using rule 30 (statement -> whileLoop .)
+    VAR             reduce using rule 30 (statement -> whileLoop .)
+    ID              reduce using rule 30 (statement -> whileLoop .)
+    FOR             reduce using rule 30 (statement -> whileLoop .)
+    WHILE           reduce using rule 30 (statement -> whileLoop .)
+    RETURN          reduce using rule 30 (statement -> whileLoop .)
+    STRING          reduce using rule 30 (statement -> whileLoop .)
+    NUMBER          reduce using rule 30 (statement -> whileLoop .)
+    BOOLEAN         reduce using rule 30 (statement -> whileLoop .)
+    FUN             reduce using rule 30 (statement -> whileLoop .)
+
+
+state 45
+
+    (31) statement -> returnStatement .
+
+    RBRACE          reduce using rule 31 (statement -> returnStatement .)
+    IF              reduce using rule 31 (statement -> returnStatement .)
+    VAR             reduce using rule 31 (statement -> returnStatement .)
+    ID              reduce using rule 31 (statement -> returnStatement .)
+    FOR             reduce using rule 31 (statement -> returnStatement .)
+    WHILE           reduce using rule 31 (statement -> returnStatement .)
+    RETURN          reduce using rule 31 (statement -> returnStatement .)
+    STRING          reduce using rule 31 (statement -> returnStatement .)
+    NUMBER          reduce using rule 31 (statement -> returnStatement .)
+    BOOLEAN         reduce using rule 31 (statement -> returnStatement .)
+    FUN             reduce using rule 31 (statement -> returnStatement .)
+
+
+state 46
+
+    (32) expression -> disjunction .
+    (33) disjunction -> disjunction . OR conjunction
+
+    RBRACE          reduce using rule 32 (expression -> disjunction .)
+    IF              reduce using rule 32 (expression -> disjunction .)
+    VAR             reduce using rule 32 (expression -> disjunction .)
+    ID              reduce using rule 32 (expression -> disjunction .)
+    FOR             reduce using rule 32 (expression -> disjunction .)
+    WHILE           reduce using rule 32 (expression -> disjunction .)
+    RETURN          reduce using rule 32 (expression -> disjunction .)
+    STRING          reduce using rule 32 (expression -> disjunction .)
+    NUMBER          reduce using rule 32 (expression -> disjunction .)
+    BOOLEAN         reduce using rule 32 (expression -> disjunction .)
+    FUN             reduce using rule 32 (expression -> disjunction .)
+    RPAREN          reduce using rule 32 (expression -> disjunction .)
+    COMMA           reduce using rule 32 (expression -> disjunction .)
+    OR              shift and go to state 70
+
+
+state 47
+
+    (62) variableDeclaration -> VAR . ID COLON type ASSIGN expression
+    (63) variableDeclaration -> VAR . ID COLON type
+
+    ID              shift and go to state 71
+
+
+state 48
+
+    (64) variableAssignment -> ID . ASSIGN expression
+    (65) variableAssignment -> ID . PLUSEQ expression
+    (66) variableAssignment -> ID . MINUSEQ expression
+    (67) variableAssignment -> ID . TIMESEQ expression
+    (68) variableAssignment -> ID . DIVIDEEQ expression
+    (56) resto -> ID .
+    (72) functionCall -> ID . LPAREN listaParametros RPAREN
+    (73) functionCall -> ID . LPAREN RPAREN
+
+    ASSIGN          shift and go to state 72
+    PLUSEQ          shift and go to state 73
+    MINUSEQ         shift and go to state 74
+    TIMESEQ         shift and go to state 75
+    DIVIDEEQ        shift and go to state 76
+    TIMES           reduce using rule 56 (resto -> ID .)
+    DIVIDE          reduce using rule 56 (resto -> ID .)
+    PLUS            reduce using rule 56 (resto -> ID .)
+    MINUS           reduce using rule 56 (resto -> ID .)
+    IN              reduce using rule 56 (resto -> ID .)
+    LESS            reduce using rule 56 (resto -> ID .)
+    GREATER         reduce using rule 56 (resto -> ID .)
+    LESSEQ          reduce using rule 56 (resto -> ID .)
+    GREATEREQ       reduce using rule 56 (resto -> ID .)
+    DIFFERENT       reduce using rule 56 (resto -> ID .)
+    AND             reduce using rule 56 (resto -> ID .)
+    OR              reduce using rule 56 (resto -> ID .)
+    RBRACE          reduce using rule 56 (resto -> ID .)
+    IF              reduce using rule 56 (resto -> ID .)
+    VAR             reduce using rule 56 (resto -> ID .)
+    ID              reduce using rule 56 (resto -> ID .)
+    FOR             reduce using rule 56 (resto -> ID .)
+    WHILE           reduce using rule 56 (resto -> ID .)
+    RETURN          reduce using rule 56 (resto -> ID .)
+    STRING          reduce using rule 56 (resto -> ID .)
+    NUMBER          reduce using rule 56 (resto -> ID .)
+    BOOLEAN         reduce using rule 56 (resto -> ID .)
+    FUN             reduce using rule 56 (resto -> ID .)
+    LPAREN          shift and go to state 77
+
+
+state 49
+
+    (69) forLoop -> FOR . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 78
+
+
+state 50
+
+    (70) whileLoop -> WHILE . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 79
+
+
+state 51
+
+    (71) returnStatement -> RETURN . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 80
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 52
+
+    (34) disjunction -> conjunction .
+    (35) conjunction -> conjunction . AND equality
+
+    OR              reduce using rule 34 (disjunction -> conjunction .)
+    RBRACE          reduce using rule 34 (disjunction -> conjunction .)
+    IF              reduce using rule 34 (disjunction -> conjunction .)
+    VAR             reduce using rule 34 (disjunction -> conjunction .)
+    ID              reduce using rule 34 (disjunction -> conjunction .)
+    FOR             reduce using rule 34 (disjunction -> conjunction .)
+    WHILE           reduce using rule 34 (disjunction -> conjunction .)
+    RETURN          reduce using rule 34 (disjunction -> conjunction .)
+    STRING          reduce using rule 34 (disjunction -> conjunction .)
+    NUMBER          reduce using rule 34 (disjunction -> conjunction .)
+    BOOLEAN         reduce using rule 34 (disjunction -> conjunction .)
+    FUN             reduce using rule 34 (disjunction -> conjunction .)
+    RPAREN          reduce using rule 34 (disjunction -> conjunction .)
+    COMMA           reduce using rule 34 (disjunction -> conjunction .)
+    AND             shift and go to state 82
+
+
+state 53
+
+    (36) conjunction -> equality .
+    (37) equality -> equality . operadoresEquality comparation
+    (39) operadoresEquality -> . DIFFERENT
+
+    AND             reduce using rule 36 (conjunction -> equality .)
+    OR              reduce using rule 36 (conjunction -> equality .)
+    RBRACE          reduce using rule 36 (conjunction -> equality .)
+    IF              reduce using rule 36 (conjunction -> equality .)
+    VAR             reduce using rule 36 (conjunction -> equality .)
+    ID              reduce using rule 36 (conjunction -> equality .)
+    FOR             reduce using rule 36 (conjunction -> equality .)
+    WHILE           reduce using rule 36 (conjunction -> equality .)
+    RETURN          reduce using rule 36 (conjunction -> equality .)
+    STRING          reduce using rule 36 (conjunction -> equality .)
+    NUMBER          reduce using rule 36 (conjunction -> equality .)
+    BOOLEAN         reduce using rule 36 (conjunction -> equality .)
+    FUN             reduce using rule 36 (conjunction -> equality .)
+    RPAREN          reduce using rule 36 (conjunction -> equality .)
+    COMMA           reduce using rule 36 (conjunction -> equality .)
+    DIFFERENT       shift and go to state 84
+
+    operadoresEquality             shift and go to state 83
+
+state 54
+
+    (38) equality -> comparation .
+    (40) comparation -> comparation . operadoresComparation inExpression
+    (42) operadoresComparation -> . LESS
+    (43) operadoresComparation -> . GREATER
+    (44) operadoresComparation -> . LESSEQ
+    (45) operadoresComparation -> . GREATEREQ
+
+    DIFFERENT       reduce using rule 38 (equality -> comparation .)
+    AND             reduce using rule 38 (equality -> comparation .)
+    OR              reduce using rule 38 (equality -> comparation .)
+    RBRACE          reduce using rule 38 (equality -> comparation .)
+    IF              reduce using rule 38 (equality -> comparation .)
+    VAR             reduce using rule 38 (equality -> comparation .)
+    ID              reduce using rule 38 (equality -> comparation .)
+    FOR             reduce using rule 38 (equality -> comparation .)
+    WHILE           reduce using rule 38 (equality -> comparation .)
+    RETURN          reduce using rule 38 (equality -> comparation .)
+    STRING          reduce using rule 38 (equality -> comparation .)
+    NUMBER          reduce using rule 38 (equality -> comparation .)
+    BOOLEAN         reduce using rule 38 (equality -> comparation .)
+    FUN             reduce using rule 38 (equality -> comparation .)
+    RPAREN          reduce using rule 38 (equality -> comparation .)
+    COMMA           reduce using rule 38 (equality -> comparation .)
+    LESS            shift and go to state 86
+    GREATER         shift and go to state 87
+    LESSEQ          shift and go to state 88
+    GREATEREQ       shift and go to state 89
+
+    operadoresComparation          shift and go to state 85
+
+state 55
+
+    (41) comparation -> inExpression .
+    (46) inExpression -> inExpression . IN additive
+
+    LESS            reduce using rule 41 (comparation -> inExpression .)
+    GREATER         reduce using rule 41 (comparation -> inExpression .)
+    LESSEQ          reduce using rule 41 (comparation -> inExpression .)
+    GREATEREQ       reduce using rule 41 (comparation -> inExpression .)
+    DIFFERENT       reduce using rule 41 (comparation -> inExpression .)
+    AND             reduce using rule 41 (comparation -> inExpression .)
+    OR              reduce using rule 41 (comparation -> inExpression .)
+    RBRACE          reduce using rule 41 (comparation -> inExpression .)
+    IF              reduce using rule 41 (comparation -> inExpression .)
+    VAR             reduce using rule 41 (comparation -> inExpression .)
+    ID              reduce using rule 41 (comparation -> inExpression .)
+    FOR             reduce using rule 41 (comparation -> inExpression .)
+    WHILE           reduce using rule 41 (comparation -> inExpression .)
+    RETURN          reduce using rule 41 (comparation -> inExpression .)
+    STRING          reduce using rule 41 (comparation -> inExpression .)
+    NUMBER          reduce using rule 41 (comparation -> inExpression .)
+    BOOLEAN         reduce using rule 41 (comparation -> inExpression .)
+    FUN             reduce using rule 41 (comparation -> inExpression .)
+    RPAREN          reduce using rule 41 (comparation -> inExpression .)
+    COMMA           reduce using rule 41 (comparation -> inExpression .)
+    IN              shift and go to state 90
+
+
+state 56
+
+    (47) inExpression -> additive .
+    (48) additive -> additive . aditivos multiplicative
+    (50) aditivos -> . PLUS
+    (51) aditivos -> . MINUS
+
+    IN              reduce using rule 47 (inExpression -> additive .)
+    LESS            reduce using rule 47 (inExpression -> additive .)
+    GREATER         reduce using rule 47 (inExpression -> additive .)
+    LESSEQ          reduce using rule 47 (inExpression -> additive .)
+    GREATEREQ       reduce using rule 47 (inExpression -> additive .)
+    DIFFERENT       reduce using rule 47 (inExpression -> additive .)
+    AND             reduce using rule 47 (inExpression -> additive .)
+    OR              reduce using rule 47 (inExpression -> additive .)
+    RBRACE          reduce using rule 47 (inExpression -> additive .)
+    IF              reduce using rule 47 (inExpression -> additive .)
+    VAR             reduce using rule 47 (inExpression -> additive .)
+    ID              reduce using rule 47 (inExpression -> additive .)
+    FOR             reduce using rule 47 (inExpression -> additive .)
+    WHILE           reduce using rule 47 (inExpression -> additive .)
+    RETURN          reduce using rule 47 (inExpression -> additive .)
+    STRING          reduce using rule 47 (inExpression -> additive .)
+    NUMBER          reduce using rule 47 (inExpression -> additive .)
+    BOOLEAN         reduce using rule 47 (inExpression -> additive .)
+    FUN             reduce using rule 47 (inExpression -> additive .)
+    RPAREN          reduce using rule 47 (inExpression -> additive .)
+    COMMA           reduce using rule 47 (inExpression -> additive .)
+    PLUS            shift and go to state 92
+    MINUS           shift and go to state 93
+
+    aditivos                       shift and go to state 91
+
+state 57
+
+    (49) additive -> multiplicative .
+    (52) multiplicative -> multiplicative . multiplicadores resto
+    (54) multiplicadores -> . TIMES
+    (55) multiplicadores -> . DIVIDE
+
+    PLUS            reduce using rule 49 (additive -> multiplicative .)
+    MINUS           reduce using rule 49 (additive -> multiplicative .)
+    IN              reduce using rule 49 (additive -> multiplicative .)
+    LESS            reduce using rule 49 (additive -> multiplicative .)
+    GREATER         reduce using rule 49 (additive -> multiplicative .)
+    LESSEQ          reduce using rule 49 (additive -> multiplicative .)
+    GREATEREQ       reduce using rule 49 (additive -> multiplicative .)
+    DIFFERENT       reduce using rule 49 (additive -> multiplicative .)
+    AND             reduce using rule 49 (additive -> multiplicative .)
+    OR              reduce using rule 49 (additive -> multiplicative .)
+    RBRACE          reduce using rule 49 (additive -> multiplicative .)
+    IF              reduce using rule 49 (additive -> multiplicative .)
+    VAR             reduce using rule 49 (additive -> multiplicative .)
+    ID              reduce using rule 49 (additive -> multiplicative .)
+    FOR             reduce using rule 49 (additive -> multiplicative .)
+    WHILE           reduce using rule 49 (additive -> multiplicative .)
+    RETURN          reduce using rule 49 (additive -> multiplicative .)
+    STRING          reduce using rule 49 (additive -> multiplicative .)
+    NUMBER          reduce using rule 49 (additive -> multiplicative .)
+    BOOLEAN         reduce using rule 49 (additive -> multiplicative .)
+    FUN             reduce using rule 49 (additive -> multiplicative .)
+    RPAREN          reduce using rule 49 (additive -> multiplicative .)
+    COMMA           reduce using rule 49 (additive -> multiplicative .)
+    TIMES           shift and go to state 95
+    DIVIDE          shift and go to state 96
+
+    multiplicadores                shift and go to state 94
+
+state 58
+
+    (53) multiplicative -> resto .
+
+    TIMES           reduce using rule 53 (multiplicative -> resto .)
+    DIVIDE          reduce using rule 53 (multiplicative -> resto .)
+    PLUS            reduce using rule 53 (multiplicative -> resto .)
+    MINUS           reduce using rule 53 (multiplicative -> resto .)
+    IN              reduce using rule 53 (multiplicative -> resto .)
+    LESS            reduce using rule 53 (multiplicative -> resto .)
+    GREATER         reduce using rule 53 (multiplicative -> resto .)
+    LESSEQ          reduce using rule 53 (multiplicative -> resto .)
+    GREATEREQ       reduce using rule 53 (multiplicative -> resto .)
+    DIFFERENT       reduce using rule 53 (multiplicative -> resto .)
+    AND             reduce using rule 53 (multiplicative -> resto .)
+    OR              reduce using rule 53 (multiplicative -> resto .)
+    RBRACE          reduce using rule 53 (multiplicative -> resto .)
+    IF              reduce using rule 53 (multiplicative -> resto .)
+    VAR             reduce using rule 53 (multiplicative -> resto .)
+    ID              reduce using rule 53 (multiplicative -> resto .)
+    FOR             reduce using rule 53 (multiplicative -> resto .)
+    WHILE           reduce using rule 53 (multiplicative -> resto .)
+    RETURN          reduce using rule 53 (multiplicative -> resto .)
+    STRING          reduce using rule 53 (multiplicative -> resto .)
+    NUMBER          reduce using rule 53 (multiplicative -> resto .)
+    BOOLEAN         reduce using rule 53 (multiplicative -> resto .)
+    FUN             reduce using rule 53 (multiplicative -> resto .)
+    RPAREN          reduce using rule 53 (multiplicative -> resto .)
+    COMMA           reduce using rule 53 (multiplicative -> resto .)
+
+
+state 59
+
+    (57) resto -> STRING .
+
+    TIMES           reduce using rule 57 (resto -> STRING .)
+    DIVIDE          reduce using rule 57 (resto -> STRING .)
+    PLUS            reduce using rule 57 (resto -> STRING .)
+    MINUS           reduce using rule 57 (resto -> STRING .)
+    IN              reduce using rule 57 (resto -> STRING .)
+    LESS            reduce using rule 57 (resto -> STRING .)
+    GREATER         reduce using rule 57 (resto -> STRING .)
+    LESSEQ          reduce using rule 57 (resto -> STRING .)
+    GREATEREQ       reduce using rule 57 (resto -> STRING .)
+    DIFFERENT       reduce using rule 57 (resto -> STRING .)
+    AND             reduce using rule 57 (resto -> STRING .)
+    OR              reduce using rule 57 (resto -> STRING .)
+    RBRACE          reduce using rule 57 (resto -> STRING .)
+    IF              reduce using rule 57 (resto -> STRING .)
+    VAR             reduce using rule 57 (resto -> STRING .)
+    ID              reduce using rule 57 (resto -> STRING .)
+    FOR             reduce using rule 57 (resto -> STRING .)
+    WHILE           reduce using rule 57 (resto -> STRING .)
+    RETURN          reduce using rule 57 (resto -> STRING .)
+    STRING          reduce using rule 57 (resto -> STRING .)
+    NUMBER          reduce using rule 57 (resto -> STRING .)
+    BOOLEAN         reduce using rule 57 (resto -> STRING .)
+    FUN             reduce using rule 57 (resto -> STRING .)
+    RPAREN          reduce using rule 57 (resto -> STRING .)
+    COMMA           reduce using rule 57 (resto -> STRING .)
+
+
+state 60
+
+    (58) resto -> NUMBER .
+
+    TIMES           reduce using rule 58 (resto -> NUMBER .)
+    DIVIDE          reduce using rule 58 (resto -> NUMBER .)
+    PLUS            reduce using rule 58 (resto -> NUMBER .)
+    MINUS           reduce using rule 58 (resto -> NUMBER .)
+    IN              reduce using rule 58 (resto -> NUMBER .)
+    LESS            reduce using rule 58 (resto -> NUMBER .)
+    GREATER         reduce using rule 58 (resto -> NUMBER .)
+    LESSEQ          reduce using rule 58 (resto -> NUMBER .)
+    GREATEREQ       reduce using rule 58 (resto -> NUMBER .)
+    DIFFERENT       reduce using rule 58 (resto -> NUMBER .)
+    AND             reduce using rule 58 (resto -> NUMBER .)
+    OR              reduce using rule 58 (resto -> NUMBER .)
+    RBRACE          reduce using rule 58 (resto -> NUMBER .)
+    IF              reduce using rule 58 (resto -> NUMBER .)
+    VAR             reduce using rule 58 (resto -> NUMBER .)
+    ID              reduce using rule 58 (resto -> NUMBER .)
+    FOR             reduce using rule 58 (resto -> NUMBER .)
+    WHILE           reduce using rule 58 (resto -> NUMBER .)
+    RETURN          reduce using rule 58 (resto -> NUMBER .)
+    STRING          reduce using rule 58 (resto -> NUMBER .)
+    NUMBER          reduce using rule 58 (resto -> NUMBER .)
+    BOOLEAN         reduce using rule 58 (resto -> NUMBER .)
+    FUN             reduce using rule 58 (resto -> NUMBER .)
+    RPAREN          reduce using rule 58 (resto -> NUMBER .)
+    COMMA           reduce using rule 58 (resto -> NUMBER .)
+
+
+state 61
+
+    (59) resto -> BOOLEAN .
+
+    TIMES           reduce using rule 59 (resto -> BOOLEAN .)
+    DIVIDE          reduce using rule 59 (resto -> BOOLEAN .)
+    PLUS            reduce using rule 59 (resto -> BOOLEAN .)
+    MINUS           reduce using rule 59 (resto -> BOOLEAN .)
+    IN              reduce using rule 59 (resto -> BOOLEAN .)
+    LESS            reduce using rule 59 (resto -> BOOLEAN .)
+    GREATER         reduce using rule 59 (resto -> BOOLEAN .)
+    LESSEQ          reduce using rule 59 (resto -> BOOLEAN .)
+    GREATEREQ       reduce using rule 59 (resto -> BOOLEAN .)
+    DIFFERENT       reduce using rule 59 (resto -> BOOLEAN .)
+    AND             reduce using rule 59 (resto -> BOOLEAN .)
+    OR              reduce using rule 59 (resto -> BOOLEAN .)
+    RBRACE          reduce using rule 59 (resto -> BOOLEAN .)
+    IF              reduce using rule 59 (resto -> BOOLEAN .)
+    VAR             reduce using rule 59 (resto -> BOOLEAN .)
+    ID              reduce using rule 59 (resto -> BOOLEAN .)
+    FOR             reduce using rule 59 (resto -> BOOLEAN .)
+    WHILE           reduce using rule 59 (resto -> BOOLEAN .)
+    RETURN          reduce using rule 59 (resto -> BOOLEAN .)
+    STRING          reduce using rule 59 (resto -> BOOLEAN .)
+    NUMBER          reduce using rule 59 (resto -> BOOLEAN .)
+    BOOLEAN         reduce using rule 59 (resto -> BOOLEAN .)
+    FUN             reduce using rule 59 (resto -> BOOLEAN .)
+    RPAREN          reduce using rule 59 (resto -> BOOLEAN .)
+    COMMA           reduce using rule 59 (resto -> BOOLEAN .)
+
+
+state 62
+
+    (60) resto -> functionDeclaration .
+
+    TIMES           reduce using rule 60 (resto -> functionDeclaration .)
+    DIVIDE          reduce using rule 60 (resto -> functionDeclaration .)
+    PLUS            reduce using rule 60 (resto -> functionDeclaration .)
+    MINUS           reduce using rule 60 (resto -> functionDeclaration .)
+    IN              reduce using rule 60 (resto -> functionDeclaration .)
+    LESS            reduce using rule 60 (resto -> functionDeclaration .)
+    GREATER         reduce using rule 60 (resto -> functionDeclaration .)
+    LESSEQ          reduce using rule 60 (resto -> functionDeclaration .)
+    GREATEREQ       reduce using rule 60 (resto -> functionDeclaration .)
+    DIFFERENT       reduce using rule 60 (resto -> functionDeclaration .)
+    AND             reduce using rule 60 (resto -> functionDeclaration .)
+    OR              reduce using rule 60 (resto -> functionDeclaration .)
+    RBRACE          reduce using rule 60 (resto -> functionDeclaration .)
+    IF              reduce using rule 60 (resto -> functionDeclaration .)
+    VAR             reduce using rule 60 (resto -> functionDeclaration .)
+    ID              reduce using rule 60 (resto -> functionDeclaration .)
+    FOR             reduce using rule 60 (resto -> functionDeclaration .)
+    WHILE           reduce using rule 60 (resto -> functionDeclaration .)
+    RETURN          reduce using rule 60 (resto -> functionDeclaration .)
+    STRING          reduce using rule 60 (resto -> functionDeclaration .)
+    NUMBER          reduce using rule 60 (resto -> functionDeclaration .)
+    BOOLEAN         reduce using rule 60 (resto -> functionDeclaration .)
+    FUN             reduce using rule 60 (resto -> functionDeclaration .)
+    RPAREN          reduce using rule 60 (resto -> functionDeclaration .)
+    COMMA           reduce using rule 60 (resto -> functionDeclaration .)
+
+
+state 63
+
+    (61) resto -> functionCall .
+
+    TIMES           reduce using rule 61 (resto -> functionCall .)
+    DIVIDE          reduce using rule 61 (resto -> functionCall .)
+    PLUS            reduce using rule 61 (resto -> functionCall .)
+    MINUS           reduce using rule 61 (resto -> functionCall .)
+    IN              reduce using rule 61 (resto -> functionCall .)
+    LESS            reduce using rule 61 (resto -> functionCall .)
+    GREATER         reduce using rule 61 (resto -> functionCall .)
+    LESSEQ          reduce using rule 61 (resto -> functionCall .)
+    GREATEREQ       reduce using rule 61 (resto -> functionCall .)
+    DIFFERENT       reduce using rule 61 (resto -> functionCall .)
+    AND             reduce using rule 61 (resto -> functionCall .)
+    OR              reduce using rule 61 (resto -> functionCall .)
+    RBRACE          reduce using rule 61 (resto -> functionCall .)
+    IF              reduce using rule 61 (resto -> functionCall .)
+    VAR             reduce using rule 61 (resto -> functionCall .)
+    ID              reduce using rule 61 (resto -> functionCall .)
+    FOR             reduce using rule 61 (resto -> functionCall .)
+    WHILE           reduce using rule 61 (resto -> functionCall .)
+    RETURN          reduce using rule 61 (resto -> functionCall .)
+    STRING          reduce using rule 61 (resto -> functionCall .)
+    NUMBER          reduce using rule 61 (resto -> functionCall .)
+    BOOLEAN         reduce using rule 61 (resto -> functionCall .)
+    FUN             reduce using rule 61 (resto -> functionCall .)
+    RPAREN          reduce using rule 61 (resto -> functionCall .)
+    COMMA           reduce using rule 61 (resto -> functionCall .)
+
+
+state 64
+
+    (14) params -> ID COLON type COMMA . params
+    (13) params -> . ID COLON type
+    (14) params -> . ID COLON type COMMA params
+
+    ID              shift and go to state 20
+
+    params                         shift and go to state 97
+
+state 65
+
+    (10) functionDeclaration -> FUN ID LPAREN params RPAREN COLON type . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 98
+
+state 66
+
+    (11) functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .
+
+    FUN             reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    $end            reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    TIMES           reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    DIVIDE          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    PLUS            reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    MINUS           reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    IN              reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    LESS            reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    GREATER         reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    LESSEQ          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    GREATEREQ       reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    DIFFERENT       reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    AND             reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    OR              reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    RBRACE          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    IF              reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    VAR             reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    ID              reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    FOR             reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    WHILE           reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    RETURN          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    STRING          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    NUMBER          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    BOOLEAN         reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    RPAREN          reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+    COMMA           reduce using rule 11 (functionDeclaration -> FUN ID LPAREN RPAREN COLON type block .)
+
+
+state 67
+
+    (20) block -> LBRACE statements RBRACE .
+
+    FUN             reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    $end            reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    TIMES           reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    DIVIDE          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    PLUS            reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    MINUS           reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    IN              reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    LESS            reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    GREATER         reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    LESSEQ          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    GREATEREQ       reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    DIFFERENT       reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    AND             reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    OR              reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    IF              reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    VAR             reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    ID              reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    FOR             reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    WHILE           reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    RETURN          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    STRING          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    NUMBER          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    BOOLEAN         reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    RPAREN          reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    COMMA           reduce using rule 20 (block -> LBRACE statements RBRACE .)
+    ELSE            reduce using rule 20 (block -> LBRACE statements RBRACE .)
+
+
+state 68
+
+    (21) statements -> statements statement .
+
+    RBRACE          reduce using rule 21 (statements -> statements statement .)
+    IF              reduce using rule 21 (statements -> statements statement .)
+    VAR             reduce using rule 21 (statements -> statements statement .)
+    ID              reduce using rule 21 (statements -> statements statement .)
+    FOR             reduce using rule 21 (statements -> statements statement .)
+    WHILE           reduce using rule 21 (statements -> statements statement .)
+    RETURN          reduce using rule 21 (statements -> statements statement .)
+    STRING          reduce using rule 21 (statements -> statements statement .)
+    NUMBER          reduce using rule 21 (statements -> statements statement .)
+    BOOLEAN         reduce using rule 21 (statements -> statements statement .)
+    FUN             reduce using rule 21 (statements -> statements statement .)
+
+
+state 69
+
+    (26) statement -> IF LPAREN . expression RPAREN block elseStatement
+    (27) statement -> IF LPAREN . expression RPAREN block
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 99
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 70
+
+    (33) disjunction -> disjunction OR . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    conjunction                    shift and go to state 100
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 71
+
+    (62) variableDeclaration -> VAR ID . COLON type ASSIGN expression
+    (63) variableDeclaration -> VAR ID . COLON type
+
+    COLON           shift and go to state 101
+
+
+state 72
+
+    (64) variableAssignment -> ID ASSIGN . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 102
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 73
+
+    (65) variableAssignment -> ID PLUSEQ . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 103
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 74
+
+    (66) variableAssignment -> ID MINUSEQ . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 104
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 75
+
+    (67) variableAssignment -> ID TIMESEQ . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 105
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 76
+
+    (68) variableAssignment -> ID DIVIDEEQ . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 106
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 77
+
+    (72) functionCall -> ID LPAREN . listaParametros RPAREN
+    (73) functionCall -> ID LPAREN . RPAREN
+    (74) listaParametros -> . expression COMMA listaParametros
+    (75) listaParametros -> . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    RPAREN          shift and go to state 108
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    listaParametros                shift and go to state 107
+    expression                     shift and go to state 109
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 78
+
+    (69) forLoop -> FOR LPAREN . expression RPAREN block
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 110
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 79
+
+    (70) whileLoop -> WHILE LPAREN . expression RPAREN block
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 111
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 80
+
+    (71) returnStatement -> RETURN expression .
+
+    RBRACE          reduce using rule 71 (returnStatement -> RETURN expression .)
+    IF              reduce using rule 71 (returnStatement -> RETURN expression .)
+    VAR             reduce using rule 71 (returnStatement -> RETURN expression .)
+    ID              reduce using rule 71 (returnStatement -> RETURN expression .)
+    FOR             reduce using rule 71 (returnStatement -> RETURN expression .)
+    WHILE           reduce using rule 71 (returnStatement -> RETURN expression .)
+    RETURN          reduce using rule 71 (returnStatement -> RETURN expression .)
+    STRING          reduce using rule 71 (returnStatement -> RETURN expression .)
+    NUMBER          reduce using rule 71 (returnStatement -> RETURN expression .)
+    BOOLEAN         reduce using rule 71 (returnStatement -> RETURN expression .)
+    FUN             reduce using rule 71 (returnStatement -> RETURN expression .)
+
+
+state 81
+
+    (56) resto -> ID .
+    (72) functionCall -> ID . LPAREN listaParametros RPAREN
+    (73) functionCall -> ID . LPAREN RPAREN
+
+    TIMES           reduce using rule 56 (resto -> ID .)
+    DIVIDE          reduce using rule 56 (resto -> ID .)
+    PLUS            reduce using rule 56 (resto -> ID .)
+    MINUS           reduce using rule 56 (resto -> ID .)
+    IN              reduce using rule 56 (resto -> ID .)
+    LESS            reduce using rule 56 (resto -> ID .)
+    GREATER         reduce using rule 56 (resto -> ID .)
+    LESSEQ          reduce using rule 56 (resto -> ID .)
+    GREATEREQ       reduce using rule 56 (resto -> ID .)
+    DIFFERENT       reduce using rule 56 (resto -> ID .)
+    AND             reduce using rule 56 (resto -> ID .)
+    OR              reduce using rule 56 (resto -> ID .)
+    RBRACE          reduce using rule 56 (resto -> ID .)
+    IF              reduce using rule 56 (resto -> ID .)
+    VAR             reduce using rule 56 (resto -> ID .)
+    ID              reduce using rule 56 (resto -> ID .)
+    FOR             reduce using rule 56 (resto -> ID .)
+    WHILE           reduce using rule 56 (resto -> ID .)
+    RETURN          reduce using rule 56 (resto -> ID .)
+    STRING          reduce using rule 56 (resto -> ID .)
+    NUMBER          reduce using rule 56 (resto -> ID .)
+    BOOLEAN         reduce using rule 56 (resto -> ID .)
+    FUN             reduce using rule 56 (resto -> ID .)
+    RPAREN          reduce using rule 56 (resto -> ID .)
+    COMMA           reduce using rule 56 (resto -> ID .)
+    LPAREN          shift and go to state 77
+
+
+state 82
+
+    (35) conjunction -> conjunction AND . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    equality                       shift and go to state 112
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 83
+
+    (37) equality -> equality operadoresEquality . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    comparation                    shift and go to state 113
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 84
+
+    (39) operadoresEquality -> DIFFERENT .
+
+    ID              reduce using rule 39 (operadoresEquality -> DIFFERENT .)
+    STRING          reduce using rule 39 (operadoresEquality -> DIFFERENT .)
+    NUMBER          reduce using rule 39 (operadoresEquality -> DIFFERENT .)
+    BOOLEAN         reduce using rule 39 (operadoresEquality -> DIFFERENT .)
+    FUN             reduce using rule 39 (operadoresEquality -> DIFFERENT .)
+
+
+state 85
+
+    (40) comparation -> comparation operadoresComparation . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    inExpression                   shift and go to state 114
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 86
+
+    (42) operadoresComparation -> LESS .
+
+    ID              reduce using rule 42 (operadoresComparation -> LESS .)
+    STRING          reduce using rule 42 (operadoresComparation -> LESS .)
+    NUMBER          reduce using rule 42 (operadoresComparation -> LESS .)
+    BOOLEAN         reduce using rule 42 (operadoresComparation -> LESS .)
+    FUN             reduce using rule 42 (operadoresComparation -> LESS .)
+
+
+state 87
+
+    (43) operadoresComparation -> GREATER .
+
+    ID              reduce using rule 43 (operadoresComparation -> GREATER .)
+    STRING          reduce using rule 43 (operadoresComparation -> GREATER .)
+    NUMBER          reduce using rule 43 (operadoresComparation -> GREATER .)
+    BOOLEAN         reduce using rule 43 (operadoresComparation -> GREATER .)
+    FUN             reduce using rule 43 (operadoresComparation -> GREATER .)
+
+
+state 88
+
+    (44) operadoresComparation -> LESSEQ .
+
+    ID              reduce using rule 44 (operadoresComparation -> LESSEQ .)
+    STRING          reduce using rule 44 (operadoresComparation -> LESSEQ .)
+    NUMBER          reduce using rule 44 (operadoresComparation -> LESSEQ .)
+    BOOLEAN         reduce using rule 44 (operadoresComparation -> LESSEQ .)
+    FUN             reduce using rule 44 (operadoresComparation -> LESSEQ .)
+
+
+state 89
+
+    (45) operadoresComparation -> GREATEREQ .
+
+    ID              reduce using rule 45 (operadoresComparation -> GREATEREQ .)
+    STRING          reduce using rule 45 (operadoresComparation -> GREATEREQ .)
+    NUMBER          reduce using rule 45 (operadoresComparation -> GREATEREQ .)
+    BOOLEAN         reduce using rule 45 (operadoresComparation -> GREATEREQ .)
+    FUN             reduce using rule 45 (operadoresComparation -> GREATEREQ .)
+
+
+state 90
+
+    (46) inExpression -> inExpression IN . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    additive                       shift and go to state 115
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 91
+
+    (48) additive -> additive aditivos . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    multiplicative                 shift and go to state 116
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 92
+
+    (50) aditivos -> PLUS .
+
+    ID              reduce using rule 50 (aditivos -> PLUS .)
+    STRING          reduce using rule 50 (aditivos -> PLUS .)
+    NUMBER          reduce using rule 50 (aditivos -> PLUS .)
+    BOOLEAN         reduce using rule 50 (aditivos -> PLUS .)
+    FUN             reduce using rule 50 (aditivos -> PLUS .)
+
+
+state 93
+
+    (51) aditivos -> MINUS .
+
+    ID              reduce using rule 51 (aditivos -> MINUS .)
+    STRING          reduce using rule 51 (aditivos -> MINUS .)
+    NUMBER          reduce using rule 51 (aditivos -> MINUS .)
+    BOOLEAN         reduce using rule 51 (aditivos -> MINUS .)
+    FUN             reduce using rule 51 (aditivos -> MINUS .)
+
+
+state 94
+
+    (52) multiplicative -> multiplicative multiplicadores . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    resto                          shift and go to state 117
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 95
+
+    (54) multiplicadores -> TIMES .
+
+    ID              reduce using rule 54 (multiplicadores -> TIMES .)
+    STRING          reduce using rule 54 (multiplicadores -> TIMES .)
+    NUMBER          reduce using rule 54 (multiplicadores -> TIMES .)
+    BOOLEAN         reduce using rule 54 (multiplicadores -> TIMES .)
+    FUN             reduce using rule 54 (multiplicadores -> TIMES .)
+
+
+state 96
+
+    (55) multiplicadores -> DIVIDE .
+
+    ID              reduce using rule 55 (multiplicadores -> DIVIDE .)
+    STRING          reduce using rule 55 (multiplicadores -> DIVIDE .)
+    NUMBER          reduce using rule 55 (multiplicadores -> DIVIDE .)
+    BOOLEAN         reduce using rule 55 (multiplicadores -> DIVIDE .)
+    FUN             reduce using rule 55 (multiplicadores -> DIVIDE .)
+
+
+state 97
+
+    (14) params -> ID COLON type COMMA params .
+
+    RPAREN          reduce using rule 14 (params -> ID COLON type COMMA params .)
+
+
+state 98
+
+    (10) functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .
+
+    FUN             reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    $end            reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    TIMES           reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    DIVIDE          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    PLUS            reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    MINUS           reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    IN              reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    LESS            reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    GREATER         reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    LESSEQ          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    GREATEREQ       reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    DIFFERENT       reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    AND             reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    OR              reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    RBRACE          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    IF              reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    VAR             reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    ID              reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    FOR             reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    WHILE           reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    RETURN          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    STRING          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    NUMBER          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    BOOLEAN         reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    RPAREN          reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+    COMMA           reduce using rule 10 (functionDeclaration -> FUN ID LPAREN params RPAREN COLON type block .)
+
+
+state 99
+
+    (26) statement -> IF LPAREN expression . RPAREN block elseStatement
+    (27) statement -> IF LPAREN expression . RPAREN block
+
+    RPAREN          shift and go to state 118
+
+
+state 100
+
+    (33) disjunction -> disjunction OR conjunction .
+    (35) conjunction -> conjunction . AND equality
+
+    OR              reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    RBRACE          reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    IF              reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    VAR             reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    ID              reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    FOR             reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    WHILE           reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    RETURN          reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    STRING          reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    NUMBER          reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    BOOLEAN         reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    FUN             reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    RPAREN          reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    COMMA           reduce using rule 33 (disjunction -> disjunction OR conjunction .)
+    AND             shift and go to state 82
+
+
+state 101
+
+    (62) variableDeclaration -> VAR ID COLON . type ASSIGN expression
+    (63) variableDeclaration -> VAR ID COLON . type
+    (15) type -> . TYPE_INT
+    (16) type -> . TYPE_STRING
+    (17) type -> . TYPE_BOOLEAN
+    (18) type -> . TYPE_FLOAT
+
+    TYPE_INT        shift and go to state 29
+    TYPE_STRING     shift and go to state 30
+    TYPE_BOOLEAN    shift and go to state 31
+    TYPE_FLOAT      shift and go to state 32
+
+    type                           shift and go to state 119
+
+state 102
+
+    (64) variableAssignment -> ID ASSIGN expression .
+
+    RBRACE          reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    IF              reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    VAR             reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    ID              reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    FOR             reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    WHILE           reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    RETURN          reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    STRING          reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    NUMBER          reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    BOOLEAN         reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+    FUN             reduce using rule 64 (variableAssignment -> ID ASSIGN expression .)
+
+
+state 103
+
+    (65) variableAssignment -> ID PLUSEQ expression .
+
+    RBRACE          reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    IF              reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    VAR             reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    ID              reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    FOR             reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    WHILE           reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    RETURN          reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    STRING          reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    NUMBER          reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    BOOLEAN         reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+    FUN             reduce using rule 65 (variableAssignment -> ID PLUSEQ expression .)
+
+
+state 104
+
+    (66) variableAssignment -> ID MINUSEQ expression .
+
+    RBRACE          reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    IF              reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    VAR             reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    ID              reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    FOR             reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    WHILE           reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    RETURN          reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    STRING          reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    NUMBER          reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    BOOLEAN         reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+    FUN             reduce using rule 66 (variableAssignment -> ID MINUSEQ expression .)
+
+
+state 105
+
+    (67) variableAssignment -> ID TIMESEQ expression .
+
+    RBRACE          reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    IF              reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    VAR             reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    ID              reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    FOR             reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    WHILE           reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    RETURN          reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    STRING          reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    NUMBER          reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    BOOLEAN         reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+    FUN             reduce using rule 67 (variableAssignment -> ID TIMESEQ expression .)
+
+
+state 106
+
+    (68) variableAssignment -> ID DIVIDEEQ expression .
+
+    RBRACE          reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    IF              reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    VAR             reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    ID              reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    FOR             reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    WHILE           reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    RETURN          reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    STRING          reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    NUMBER          reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    BOOLEAN         reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+    FUN             reduce using rule 68 (variableAssignment -> ID DIVIDEEQ expression .)
+
+
+state 107
+
+    (72) functionCall -> ID LPAREN listaParametros . RPAREN
+
+    RPAREN          shift and go to state 120
+
+
+state 108
+
+    (73) functionCall -> ID LPAREN RPAREN .
+
+    TIMES           reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    DIVIDE          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    PLUS            reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    MINUS           reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    IN              reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    LESS            reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    GREATER         reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    LESSEQ          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    GREATEREQ       reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    DIFFERENT       reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    AND             reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    OR              reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    RBRACE          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    IF              reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    VAR             reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    ID              reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    FOR             reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    WHILE           reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    RETURN          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    STRING          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    NUMBER          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    BOOLEAN         reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    FUN             reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    RPAREN          reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+    COMMA           reduce using rule 73 (functionCall -> ID LPAREN RPAREN .)
+
+
+state 109
+
+    (74) listaParametros -> expression . COMMA listaParametros
+    (75) listaParametros -> expression .
+
+    COMMA           shift and go to state 121
+    RPAREN          reduce using rule 75 (listaParametros -> expression .)
+
+
+state 110
+
+    (69) forLoop -> FOR LPAREN expression . RPAREN block
+
+    RPAREN          shift and go to state 122
+
+
+state 111
+
+    (70) whileLoop -> WHILE LPAREN expression . RPAREN block
+
+    RPAREN          shift and go to state 123
+
+
+state 112
+
+    (35) conjunction -> conjunction AND equality .
+    (37) equality -> equality . operadoresEquality comparation
+    (39) operadoresEquality -> . DIFFERENT
+
+    AND             reduce using rule 35 (conjunction -> conjunction AND equality .)
+    OR              reduce using rule 35 (conjunction -> conjunction AND equality .)
+    RBRACE          reduce using rule 35 (conjunction -> conjunction AND equality .)
+    IF              reduce using rule 35 (conjunction -> conjunction AND equality .)
+    VAR             reduce using rule 35 (conjunction -> conjunction AND equality .)
+    ID              reduce using rule 35 (conjunction -> conjunction AND equality .)
+    FOR             reduce using rule 35 (conjunction -> conjunction AND equality .)
+    WHILE           reduce using rule 35 (conjunction -> conjunction AND equality .)
+    RETURN          reduce using rule 35 (conjunction -> conjunction AND equality .)
+    STRING          reduce using rule 35 (conjunction -> conjunction AND equality .)
+    NUMBER          reduce using rule 35 (conjunction -> conjunction AND equality .)
+    BOOLEAN         reduce using rule 35 (conjunction -> conjunction AND equality .)
+    FUN             reduce using rule 35 (conjunction -> conjunction AND equality .)
+    RPAREN          reduce using rule 35 (conjunction -> conjunction AND equality .)
+    COMMA           reduce using rule 35 (conjunction -> conjunction AND equality .)
+    DIFFERENT       shift and go to state 84
+
+    operadoresEquality             shift and go to state 83
+
+state 113
+
+    (37) equality -> equality operadoresEquality comparation .
+    (40) comparation -> comparation . operadoresComparation inExpression
+    (42) operadoresComparation -> . LESS
+    (43) operadoresComparation -> . GREATER
+    (44) operadoresComparation -> . LESSEQ
+    (45) operadoresComparation -> . GREATEREQ
+
+    DIFFERENT       reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    AND             reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    OR              reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    RBRACE          reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    IF              reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    VAR             reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    ID              reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    FOR             reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    WHILE           reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    RETURN          reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    STRING          reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    NUMBER          reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    BOOLEAN         reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    FUN             reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    RPAREN          reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    COMMA           reduce using rule 37 (equality -> equality operadoresEquality comparation .)
+    LESS            shift and go to state 86
+    GREATER         shift and go to state 87
+    LESSEQ          shift and go to state 88
+    GREATEREQ       shift and go to state 89
+
+    operadoresComparation          shift and go to state 85
+
+state 114
+
+    (40) comparation -> comparation operadoresComparation inExpression .
+    (46) inExpression -> inExpression . IN additive
+
+    LESS            reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    GREATER         reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    LESSEQ          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    GREATEREQ       reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    DIFFERENT       reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    AND             reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    OR              reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    RBRACE          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    IF              reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    VAR             reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    ID              reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    FOR             reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    WHILE           reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    RETURN          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    STRING          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    NUMBER          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    BOOLEAN         reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    FUN             reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    RPAREN          reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    COMMA           reduce using rule 40 (comparation -> comparation operadoresComparation inExpression .)
+    IN              shift and go to state 90
+
+
+state 115
+
+    (46) inExpression -> inExpression IN additive .
+    (48) additive -> additive . aditivos multiplicative
+    (50) aditivos -> . PLUS
+    (51) aditivos -> . MINUS
+
+    IN              reduce using rule 46 (inExpression -> inExpression IN additive .)
+    LESS            reduce using rule 46 (inExpression -> inExpression IN additive .)
+    GREATER         reduce using rule 46 (inExpression -> inExpression IN additive .)
+    LESSEQ          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    GREATEREQ       reduce using rule 46 (inExpression -> inExpression IN additive .)
+    DIFFERENT       reduce using rule 46 (inExpression -> inExpression IN additive .)
+    AND             reduce using rule 46 (inExpression -> inExpression IN additive .)
+    OR              reduce using rule 46 (inExpression -> inExpression IN additive .)
+    RBRACE          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    IF              reduce using rule 46 (inExpression -> inExpression IN additive .)
+    VAR             reduce using rule 46 (inExpression -> inExpression IN additive .)
+    ID              reduce using rule 46 (inExpression -> inExpression IN additive .)
+    FOR             reduce using rule 46 (inExpression -> inExpression IN additive .)
+    WHILE           reduce using rule 46 (inExpression -> inExpression IN additive .)
+    RETURN          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    STRING          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    NUMBER          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    BOOLEAN         reduce using rule 46 (inExpression -> inExpression IN additive .)
+    FUN             reduce using rule 46 (inExpression -> inExpression IN additive .)
+    RPAREN          reduce using rule 46 (inExpression -> inExpression IN additive .)
+    COMMA           reduce using rule 46 (inExpression -> inExpression IN additive .)
+    PLUS            shift and go to state 92
+    MINUS           shift and go to state 93
+
+    aditivos                       shift and go to state 91
+
+state 116
+
+    (48) additive -> additive aditivos multiplicative .
+    (52) multiplicative -> multiplicative . multiplicadores resto
+    (54) multiplicadores -> . TIMES
+    (55) multiplicadores -> . DIVIDE
+
+    PLUS            reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    MINUS           reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    IN              reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    LESS            reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    GREATER         reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    LESSEQ          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    GREATEREQ       reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    DIFFERENT       reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    AND             reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    OR              reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    RBRACE          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    IF              reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    VAR             reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    ID              reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    FOR             reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    WHILE           reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    RETURN          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    STRING          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    NUMBER          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    BOOLEAN         reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    FUN             reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    RPAREN          reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    COMMA           reduce using rule 48 (additive -> additive aditivos multiplicative .)
+    TIMES           shift and go to state 95
+    DIVIDE          shift and go to state 96
+
+    multiplicadores                shift and go to state 94
+
+state 117
+
+    (52) multiplicative -> multiplicative multiplicadores resto .
+
+    TIMES           reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    DIVIDE          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    PLUS            reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    MINUS           reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    IN              reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    LESS            reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    GREATER         reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    LESSEQ          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    GREATEREQ       reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    DIFFERENT       reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    AND             reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    OR              reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    RBRACE          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    IF              reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    VAR             reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    ID              reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    FOR             reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    WHILE           reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    RETURN          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    STRING          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    NUMBER          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    BOOLEAN         reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    FUN             reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    RPAREN          reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+    COMMA           reduce using rule 52 (multiplicative -> multiplicative multiplicadores resto .)
+
+
+state 118
+
+    (26) statement -> IF LPAREN expression RPAREN . block elseStatement
+    (27) statement -> IF LPAREN expression RPAREN . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 124
+
+state 119
+
+    (62) variableDeclaration -> VAR ID COLON type . ASSIGN expression
+    (63) variableDeclaration -> VAR ID COLON type .
+
+    ASSIGN          shift and go to state 125
+    RBRACE          reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    IF              reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    VAR             reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    ID              reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    FOR             reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    WHILE           reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    RETURN          reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    STRING          reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    NUMBER          reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    BOOLEAN         reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+    FUN             reduce using rule 63 (variableDeclaration -> VAR ID COLON type .)
+
+
+state 120
+
+    (72) functionCall -> ID LPAREN listaParametros RPAREN .
+
+    TIMES           reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    DIVIDE          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    PLUS            reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    MINUS           reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    IN              reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    LESS            reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    GREATER         reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    LESSEQ          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    GREATEREQ       reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    DIFFERENT       reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    AND             reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    OR              reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    RBRACE          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    IF              reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    VAR             reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    ID              reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    FOR             reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    WHILE           reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    RETURN          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    STRING          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    NUMBER          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    BOOLEAN         reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    FUN             reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    RPAREN          reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+    COMMA           reduce using rule 72 (functionCall -> ID LPAREN listaParametros RPAREN .)
+
+
+state 121
+
+    (74) listaParametros -> expression COMMA . listaParametros
+    (74) listaParametros -> . expression COMMA listaParametros
+    (75) listaParametros -> . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 109
+    listaParametros                shift and go to state 126
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 122
+
+    (69) forLoop -> FOR LPAREN expression RPAREN . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 127
+
+state 123
+
+    (70) whileLoop -> WHILE LPAREN expression RPAREN . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 128
+
+state 124
+
+    (26) statement -> IF LPAREN expression RPAREN block . elseStatement
+    (27) statement -> IF LPAREN expression RPAREN block .
+    (28) elseStatement -> . ELSE block
+
+    RBRACE          reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    IF              reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    VAR             reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    ID              reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    FOR             reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    RETURN          reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    STRING          reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    NUMBER          reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    BOOLEAN         reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    FUN             reduce using rule 27 (statement -> IF LPAREN expression RPAREN block .)
+    ELSE            shift and go to state 130
+
+    elseStatement                  shift and go to state 129
+
+state 125
+
+    (62) variableDeclaration -> VAR ID COLON type ASSIGN . expression
+    (32) expression -> . disjunction
+    (33) disjunction -> . disjunction OR conjunction
+    (34) disjunction -> . conjunction
+    (35) conjunction -> . conjunction AND equality
+    (36) conjunction -> . equality
+    (37) equality -> . equality operadoresEquality comparation
+    (38) equality -> . comparation
+    (40) comparation -> . comparation operadoresComparation inExpression
+    (41) comparation -> . inExpression
+    (46) inExpression -> . inExpression IN additive
+    (47) inExpression -> . additive
+    (48) additive -> . additive aditivos multiplicative
+    (49) additive -> . multiplicative
+    (52) multiplicative -> . multiplicative multiplicadores resto
+    (53) multiplicative -> . resto
+    (56) resto -> . ID
+    (57) resto -> . STRING
+    (58) resto -> . NUMBER
+    (59) resto -> . BOOLEAN
+    (60) resto -> . functionDeclaration
+    (61) resto -> . functionCall
+    (9) functionDeclaration -> . FUN ID LPAREN params RPAREN block
+    (10) functionDeclaration -> . FUN ID LPAREN params RPAREN COLON type block
+    (11) functionDeclaration -> . FUN ID LPAREN RPAREN COLON type block
+    (12) functionDeclaration -> . FUN ID LPAREN RPAREN block
+    (72) functionCall -> . ID LPAREN listaParametros RPAREN
+    (73) functionCall -> . ID LPAREN RPAREN
+
+    ID              shift and go to state 81
+    STRING          shift and go to state 59
+    NUMBER          shift and go to state 60
+    BOOLEAN         shift and go to state 61
+    FUN             shift and go to state 15
+
+    expression                     shift and go to state 131
+    disjunction                    shift and go to state 46
+    conjunction                    shift and go to state 52
+    equality                       shift and go to state 53
+    comparation                    shift and go to state 54
+    inExpression                   shift and go to state 55
+    additive                       shift and go to state 56
+    multiplicative                 shift and go to state 57
+    resto                          shift and go to state 58
+    functionDeclaration            shift and go to state 62
+    functionCall                   shift and go to state 63
+
+state 126
+
+    (74) listaParametros -> expression COMMA listaParametros .
+
+    RPAREN          reduce using rule 74 (listaParametros -> expression COMMA listaParametros .)
+
+
+state 127
+
+    (69) forLoop -> FOR LPAREN expression RPAREN block .
+
+    RBRACE          reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    IF              reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    VAR             reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    ID              reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    FOR             reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    RETURN          reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    STRING          reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    NUMBER          reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    BOOLEAN         reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+    FUN             reduce using rule 69 (forLoop -> FOR LPAREN expression RPAREN block .)
+
+
+state 128
+
+    (70) whileLoop -> WHILE LPAREN expression RPAREN block .
+
+    RBRACE          reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    IF              reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    VAR             reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    ID              reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    FOR             reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    RETURN          reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    STRING          reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    NUMBER          reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    BOOLEAN         reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+    FUN             reduce using rule 70 (whileLoop -> WHILE LPAREN expression RPAREN block .)
+
+
+state 129
+
+    (26) statement -> IF LPAREN expression RPAREN block elseStatement .
+
+    RBRACE          reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    IF              reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    VAR             reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    ID              reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    FOR             reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    WHILE           reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    RETURN          reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    STRING          reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    NUMBER          reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    BOOLEAN         reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+    FUN             reduce using rule 26 (statement -> IF LPAREN expression RPAREN block elseStatement .)
+
+
+state 130
+
+    (28) elseStatement -> ELSE . block
+    (19) block -> . LBRACE RBRACE
+    (20) block -> . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 27
+
+    block                          shift and go to state 132
+
+state 131
+
+    (62) variableDeclaration -> VAR ID COLON type ASSIGN expression .
+
+    RBRACE          reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    IF              reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    VAR             reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    ID              reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    FOR             reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    WHILE           reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    RETURN          reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    STRING          reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    NUMBER          reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    BOOLEAN         reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+    FUN             reduce using rule 62 (variableDeclaration -> VAR ID COLON type ASSIGN expression .)
+
+
+state 132
+
+    (28) elseStatement -> ELSE block .
+
+    RBRACE          reduce using rule 28 (elseStatement -> ELSE block .)
+    IF              reduce using rule 28 (elseStatement -> ELSE block .)
+    VAR             reduce using rule 28 (elseStatement -> ELSE block .)
+    ID              reduce using rule 28 (elseStatement -> ELSE block .)
+    FOR             reduce using rule 28 (elseStatement -> ELSE block .)
+    WHILE           reduce using rule 28 (elseStatement -> ELSE block .)
+    RETURN          reduce using rule 28 (elseStatement -> ELSE block .)
+    STRING          reduce using rule 28 (elseStatement -> ELSE block .)
+    NUMBER          reduce using rule 28 (elseStatement -> ELSE block .)
+    BOOLEAN         reduce using rule 28 (elseStatement -> ELSE block .)
+    FUN             reduce using rule 28 (elseStatement -> ELSE block .)
+
